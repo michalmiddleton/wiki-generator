@@ -19,8 +19,7 @@ jobs:
     - name: Test container
       run: docker run mm404/mkdocs:latest /usr/local/bin/mkdocs --version
     - name: Log in to Docker hub
-      if: github.event_name == 'push'
-      run: echo ${{ secrets.DOCKER_HUB_KEY }} | docker login -u mm404 --password-stdin
+      run: echo ${{ secrets.DOCKER_HUB_KEY }} | docker login -u ${{ vars.DOCKER_HUB_USER }} --password-stdin
     - name: Push image to Docker
       if: github.event_name == 'push'
       run: docker push -a mm404/mkdocs
