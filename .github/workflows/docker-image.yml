@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+    - uses: actions/checkout@v4
     - name: Build the Docker image
       run: ./build.sh $CR_IMAGE_NAME
     - name: Test container
@@ -26,4 +26,3 @@ jobs:
     - name: Push image to Docker
       if: github.event_name == 'push'
       run: docker push -a $CR_IMAGE_NAME
-    
